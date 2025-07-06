@@ -1,0 +1,19 @@
+@startuml
+
+actor Пациент
+
+rectangle "Ресепшен" as Reception
+database "Excel-файл (журнал)" as ExcelFile
+folder "Сканированные анкеты" as FileStorage
+
+Пациент --> Reception : заполняет анкету (PII / PHI)
+Reception --> ExcelFile : вводит персональные данные
+Reception --> FileStorage : сканирует бумажную анкету
+
+note "Excel-файл содержит:\n- ФИО, дату рождения, контакты\n- Формат: XLSX" as N1
+note "Хранилище содержит:\n- отсканированные анкеты\n- Формат: JPG, PDF" as N2
+
+ExcelFile .. N1
+FileStorage .. N2
+
+@enduml
